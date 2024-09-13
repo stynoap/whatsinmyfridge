@@ -2,6 +2,14 @@
   <h1 class="text-2xl font-bold text-center pl-3 text-sky-900 tracking-wide uppercase mt-4">
     What's Left In My Fridge?!
   </h1>
+  <div class="flex gap-2 justify-center mt-6">
+    <button routerLink ='/add-recipe' class="bg-amber-200 rounded-lg px-4 py-2 uppercase text-sm tracking-wider font-semibold">Aggiungi Ricetta</button>
+    <button routerLink ='/add-ingredient' class="bg-sky-200 rounded-lg px-4 py-2 uppercase text-sm tracking-wider font-semibold">Aggiungi Ingrediente</button>
+    <button routerLink ='/recipes-list' class="bg-sky-200 rounded-lg px-4 py-2 uppercase text-sm tracking-wider font-semibold">Vai alla lista delle ricette</button>
+  </div>
+
+
 </div>
 
 <app-ingredients-input></app-ingredients-input>
+<router-outlet></router-outlet>

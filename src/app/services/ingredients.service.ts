@@ -1,24 +1,33 @@
 import { Injectable } from '@angular/core';
+import { Ingredient } from '../models/ingredient.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IngredientsService {
+  private ingredients: Ingredient[] = [];
 
-  private ingredients:string[] = []
+  private savedIngredients: Ingredient[] = [{name: 'nutella'}, {name: 'carciofi'}, {name: 'cavolfiore'}];
 
-  constructor() { }
+  constructor() {}
 
-  getIngredients():string[]{
-    return this.ingredients
+  getIngredients(): Ingredient[] {
+    return this.ingredients;
   }
 
-addIngredient(ingredient:string): void{
-  this.ingredients.push(ingredient)
-}
+  addIngredient(ingredient: Ingredient): void {
+    this.ingredients.push(ingredient);
+  }
 
-removeIngredient(index:number):void{
-  this.ingredients.splice(index, 1)
-}
+  removeIngredient(index: number): void {
+    this.ingredients.splice(index, 1);
+  }
 
+  saveIngredient(ingredient: Ingredient): void {
+    this.savedIngredients.push(ingredient);
+  }
+
+  getSavedIngredients(): Ingredient[] {
+    return this.savedIngredients;
+  }
 }

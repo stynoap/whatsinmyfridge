@@ -1,1 +1,14 @@
-<p>recipe-list works!</p>
+<div>
+  <div
+    *ngFor="let recipe of recipes"
+    class="bg-amber-50 p-4 flex flex-col items-center gap-2"
+  >
+    <p class="text-xl uppercase font-semibold ">{{ recipe.name }}</p>
+    <p>{{ recipe.procedure }}</p>
+    <div class="flex gap-2">
+      <div *ngFor="let ingredient of recipe.ingredients">
+        <app-tag [ingredient]="ingredient"></app-tag>
+      </div>
+    </div>
+  </div>
+</div>

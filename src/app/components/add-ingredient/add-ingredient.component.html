@@ -1,1 +1,13 @@
-<p>add-ingredient works!</p>
+<div class="flex justify-center">
+    <form class="w-7/12"  (ngSubmit)="saveIngredient()">
+        <input
+        [(ngModel)]="ingredientInput"
+        name="ingredient"
+        placeholder="Inserisci l'ingrediente che vorresti aggiungere alla lista degli ingredienti"
+        class="p-2 border rounded w-full mb-4"
+      />
+      <label>{{ingredientInput}}</label>
+      <button type="submit">salva</button>
+    </form>
+   
+</div>

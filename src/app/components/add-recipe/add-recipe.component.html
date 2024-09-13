@@ -1,1 +1,47 @@
-<p>add-recipe works!</p>
+<div class="bg-sky-100 p-3">
+  <form (ngSubmit)="onSaveRecipe()" class="flex flex-col items-center gap-3">
+    <input
+      placeholder="inserisci il nome della tua ricetta"
+      name="nome-ricetta"
+      class="w-4/12 p-4 rounded-lg"
+      [(ngModel)]="inputName"
+    />
+    <p>Gli ingredienti che servono per la tua ricetta:</p>
+    <ul class="flex gap-2">
+      <li
+        *ngFor="let ingredient of ingredientsOfRecipe"
+        (click)="removeIngredientByRecipe(ingredient)"
+        class="bg-amber-200 rounded-lg p-1 cursor-pointer"
+      >
+        {{ ingredient.name }}
+      </li>
+    </ul>
+    <textarea
+      placeholder="inserisci il procedimento della ricetta"
+      name="procedimento"
+      class="w-4/12 p-4 rounded-lg"
+      [(ngModel)]="procedureInput"
+    ></textarea>
+    <input
+      placeholder="inserisci gli ingredienti"
+      name="ingrendienti"
+      class="w-4/12 p-4 rounded-lg"
+      [(ngModel)]="ingredientInput"
+      (input)="onIngredientInputChange()"
+    />
+    <div class="flex gap-2">
+      <app-tag
+        *ngFor="let ingredient of filteredIngredients"
+        [ingredient]="ingredient"
+        (ingredientSelected)="addIngredientToRecipe($event)"
+        >></app-tag
+      >
+    </div>
+    <button
+      type="submit"
+      class="p-2 bg-sky-300 w-3/12 rounded-lg hover:bg-sky-400 uppercase tracking-wider text-sm font-semibold"
+    >
+      Salva ricetta
+    </button>
+  </form>
+</div>

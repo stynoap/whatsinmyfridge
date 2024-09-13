@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IngredientsService } from '../../services/ingredients.service';
+import { Ingredient } from '../../models/ingredient.interface';
 
 @Component({
   selector: 'app-ingredients-input',
@@ -10,17 +11,19 @@ import { IngredientsService } from '../../services/ingredients.service';
   templateUrl: './ingredients-input.component.html'
 })
 export class IngredientsInputComponent {
-  ingredient: string = '';
+  ingredient: Ingredient = {name: ''};
 
   constructor(private ingredientSevice:IngredientsService){}
 
   addIngredient() {
     if (this.ingredient) {
       this.ingredientSevice.addIngredient(this.ingredient);
-      this.ingredient = '';
+      this.ingredient = {
+        name: ''
+      };
     }
   }
-  get ingredients(): string[]{
+  get ingredients(): Ingredient[]{
     return this.ingredientSevice.getIngredients();
   }
   removeIngredient(index: number) {
