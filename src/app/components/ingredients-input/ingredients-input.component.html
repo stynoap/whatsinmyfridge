@@ -1,35 +1,37 @@
 <div class="p-4">
-
   <div class="flex flex-col items-center">
     <h2 class="text-2xl font-semibold mb-4 text-slate-800">
-        Inserisci gli ingredienti restanti nel tuo frigo
-      </h2>
-    <form (ngSubmit)="addIngredient()" class="w-5/12">
+      Inserisci gli ingredienti restanti nel tuo frigo
+    </h2>
+    <form class="w-5/12">
       <input
-        [(ngModel)]="ingredient.name"
+        [(ngModel)]="ingredientInput"
         name="ingredient"
-        placeholder="Inserisci un ingrediente e premi invio"
+        placeholder="Inserisci un ingrediente e seleziona sulla base di quelli che ti escono"
         class="p-2 border rounded w-full mb-4"
+        (input)="onIngredientInputChange()"
       />
-      <button type="submit" class="bg-amber-500 p-2 rounded w-full text-slate-800 uppercase text-sm tracking-widest ">
-        Aggiungi
-      </button>
+      <div *ngIf="filteredIngredients.length > 0">
+        <app-tag
+          *ngFor="let ingredient of filteredIngredients"
+          (ingredientSelected)="addIngredientToSearch($event)"
+          [ingredient]="ingredient"
+        ></app-tag>
+      </div>
     </form>
     <p>Gli ingredienti su cui si stanno basando i risultati</p>
-    <p class="text-xs font-bold tracking-widest mt-5">clicca sull'ingrediente per eliminarlo dalla ricerca</p>
+    <p class="text-xs font-bold tracking-widest mt-5">
+      clicca sull'ingrediente per eliminarlo dalla ricerca
+    </p>
 
     <ul class="mt-4 flex gap-2 flex-wrap w-10/12">
-        <li
-          *ngFor="let ing of ingredients; let i = index"
-          class="px-2 py-1 bg-amber-50 text-slate-800 tracking-widest rounded-xl text-sm shadow-sm shadow-amber-500 cursor-pointer"
-          (click)="removeIngredient(i)"
-        >
-          {{ ing }}
-        </li>
-      </ul>
-
+      <li
+        *ngFor="let ing of (ingredients$ | async); let i = index"
+        class="px-2 py-1 bg-amber-50 text-slate-800 tracking-widest rounded-xl text-sm shadow-sm shadow-amber-500 cursor-pointer"
+        (click)="removeIngredient(i)"
+      >
+        {{ ing.name }}
+      </li>
+    </ul>
   </div>
-
-
-
 </div>
